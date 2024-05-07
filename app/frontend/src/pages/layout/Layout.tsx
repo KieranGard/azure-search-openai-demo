@@ -14,7 +14,7 @@ const Layout = () => {
             <header className={styles.header} role={"banner"}>
                 <div className={styles.headerContainer}>
                     <Link to="/" className={styles.headerTitleContainer}>
-                        <h3 className={styles.headerTitle}>Human Resource Assistant | GPT + Enterprise data</h3>
+                        <h3 className={styles.headerTitle}>Human Resource Assistant | Ipswich City Council</h3>
                     </Link>
                     <nav>
                         <ul className={styles.headerNavList}>
@@ -30,7 +30,7 @@ const Layout = () => {
                             </li>
                         </ul>
                     </nav>
-                    <h4 className={styles.headerRightText}>Azure OpenAI + Cognitive Search</h4>
+                    <h4 className={styles.headerRightText}>GTP + Azure OpenAI + Cognitive Search</h4>
                     {useLogin && <LoginButton />}
                 </div>
             </header>

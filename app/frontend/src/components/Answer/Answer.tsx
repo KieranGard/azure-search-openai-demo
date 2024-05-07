@@ -42,7 +42,7 @@ export const Answer = ({
                     <AnswerIcon />
                     <div>
                         <IconButton
-                            style={{ color: "black" }}
+                            style={{ color: "black", display: "none" }}
                             iconProps={{ iconName: "Lightbulb" }}
                             title="Show thought process"
                             ariaLabel="Show thought process"
@@ -50,7 +50,7 @@ export const Answer = ({
                             disabled={!answer.choices[0].context.thoughts?.length}
                         />
                         <IconButton
-                            style={{ color: "black" }}
+                            style={{ color: "black", display: "none" }}
                             iconProps={{ iconName: "ClipboardList" }}
                             title="Show supporting content"
                             ariaLabel="Show supporting content"

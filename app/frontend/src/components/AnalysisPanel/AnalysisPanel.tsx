@@ -19,8 +19,8 @@ interface Props {
 const pivotItemDisabledStyle = { disabled: true, style: { color: "grey" } };
 
 export const AnalysisPanel = ({ answer, activeTab, activeCitation, citationHeight, className, onActiveTabChanged }: Props) => {
-    const isDisabledThoughtProcessTab: boolean = !answer.choices[0].context.thoughts;
-    const isDisabledSupportingContentTab: boolean = !answer.choices[0].context.data_points.length;
+    const isDisabledThoughtProcessTab: boolean = true;
+    const isDisabledSupportingContentTab: boolean = true;
     const isDisabledCitationTab: boolean = !activeCitation;
 
     const sanitizedThoughts = DOMPurify.sanitize(answer.choices[0].context.thoughts!);

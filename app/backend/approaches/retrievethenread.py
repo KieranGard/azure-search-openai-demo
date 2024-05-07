@@ -17,23 +17,25 @@ class RetrieveThenReadApproach(Approach):
     """
 
     system_chat_template = (
-        "You are an intelligent assistant helping Ipswich City Council employees with their Human Resource questions. "
+        "You are an AI Human Resource Assistant and an expert in the supplied documents. "
+        + "Your task is to help the Ipswich City Council employees gain insights from the documents and answer Human Resource questions. "
         + "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. "
-        + "Answer the following question using only the data provided in the sources below. "
-        + "Let's think step by step about information in retrieved documents to answer user queries. Extract relevant knowledge to user queries from documents step by step and form an answer bottom up from the extracted information from relevant documents."
-        + "For tabular information return it as an html table. Do not return markdown format. "
+        + "Answer the following question using only the data provided in the supplied documents. "
+        + "Provide clear and structured answers based on the context provided. Think step by step about information in retrieved documents to answer user queries. "
+        + "Return any tables and relevant content as html. "
+        + "When relevant, use bullet points and lists to structure your answer. "
         + "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. "
         + "If you cannot answer using the sources below, say you don't know. Use below example to answer"
     )
 
     # shots/sample conversation
     question = """
-'What are the reasonable grounds for declining a Flexible Working Arrangement request?'
+'Are uniforms provided to Council employees?'
 
-Sources:
-Flexible Working Arrangements Procedure.pdf: Reasonable grounds for refusing a request may include but not be limited to a) Capacity to change the working arrangements of other employees to accommodate the flexible working arrangements request; b) Suitability of the work being performed; c) Performance of the employee; d) Costs to Council above normal expectations; e) Loss of productivity and efficiency; and/or f) Negative impacts on service delivery.
+Sources: 
+Corporate Uniform Administrative Directive.pdf: The Council is committed to ensuring employees who are required to wear the compulsory corporate uniform are provided with comfortable and professional uniforms. Employees who are not required to wear the compulsory corporate uniform are provided with a variety of corporate clothing options that are comfortable, of good quality and able to be subsidised. Uniforms must comply with health and safety guidelines as relevant to the work being performed.
 """
-    answer = "Reasonable grounds for refusing a request may include but not be limited to a) Capacity to change the working arrangements of other employees to accommodate the flexible working arrangements request; b) Suitability of the work being performed; c) Performance of the employee; d) Costs to Council above normal expectations; e) Loss of productivity and efficiency; and/or f) Negative impacts on service delivery. [Flexible Working Arrangements Procedure.pdf]"
+    answer = "Yes, uniforms are provided to Council employees. The Corporate Uniform Administrative Directive states that Ipswich City Council aims to provide employees with comfortable and professional uniforms that project a professional image and comply with health and safety guidelines. The directive also states that employees who are required to wear the compulsory corporate uniform will be provided with comfortable and professional uniforms.[Corporate Uniform Administrative Directive.pdf]"
 
     def __init__(
         self,

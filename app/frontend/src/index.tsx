@@ -7,7 +7,7 @@ import { PublicClientApplication, EventType, AccountInfo } from "@azure/msal-bro
 import { msalConfig, useLogin } from "./authConfig";
 
 import "./index.css";
-
+import Background from "./assets/full-background.png"
 import Layout from "./pages/layout/Layout";
 import Chat from "./pages/chat/Chat";
 

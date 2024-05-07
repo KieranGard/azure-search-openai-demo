@@ -2,7 +2,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 0px;
+    /* The image used */
+    background-image: url("../../assets/full-background.png");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .chatRoot {
@@ -16,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
 }
 
 .chatEmptyState {
@@ -33,6 +41,10 @@
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 30px;
+    background-image: url("../../assets/icc_logo_white.png");
+    background-repeat: no-repeat;
+    height: 145px;
+    width: 146px;
 }
 
 .chatEmptyStateSubtitle {
@@ -53,7 +65,8 @@
 
 .chatMessageStream {
     flex-grow: 1;
-    max-height: 1024px;
+    /*max-height: 1024px;*/
+    max-height: 700px;
     max-width: 1028px;
     width: 100%;
     overflow-y: auto;
@@ -85,7 +98,7 @@
     padding-right: 24px;
     width: 100%;
     max-width: 1028px;
-    background: #f2f2f2;
+    background: none;
 }
 
 .chatAnalysisPanel {
@@ -107,6 +120,8 @@
 .commandsContainer {
     display: flex;
     align-self: flex-end;
+    margin-top: 20px;
+    margin-right: 100px;
 }
 
 .commandButton {

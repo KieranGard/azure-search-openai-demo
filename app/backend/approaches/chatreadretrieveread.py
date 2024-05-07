@@ -27,29 +27,35 @@ class ChatReadRetrieveReadApproach(Approach):
     top documents from search, then constructs a prompt with them, and then uses OpenAI to generate an completion
     (answer) with that prompt.
     """
-    system_message_chat_conversation = """Assistant helps the council employees with their human resource questions, and questions about directives, policies, procedures and forms. Be brief in your answers but include all relevant facts.
-Answer ONLY with the facts listed in the list of sources below. Let's think step by step about information in retrieved documents to answer user queries. Extract relevant knowledge to user queries from documents step by step and form an answer bottom up from the extracted information from relevant documents. If there isn't enough information below, say you don't know. Do not generate answers that don't use the sources below. If asking a clarifying question to the user would help, ask the question.
-For tabular information return it as an html table. Do not return markdown format. If the question is not in English, answer in the language used in the question.
-Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. Use square brackets to reference the source, for example [info1.txt]. Don't combine sources, list each source separately, for example [info1.txt][info2.pdf].
+    system_message_chat_conversation = """You are an AI Human Resource Assistant and an expert in the supplied documents. 
+    Your task is to help the council employees gain insights from the documents and answer Human Resource questions. 
+    Be brief in your answers but you must include all relevant facts from the documents. 
+    Provide clear and structured answers based on the context provided. Think step by step about information in retrieved documents to answer user queries. 
+    Return any tables and relevant content as html. 
+    When relevant, use bullet points and lists to structure your answers. 
+    If there isn't enough information below, say you don't know. 
+    If asking a clarifying question to the user would help, ask the question. 
+    If the question is not in English, answer in the language used in the question. 
+    Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. Use square brackets to reference the source, for example [info1.txt]. Don't combine sources, list each source separately, for example [info1.txt][info2.pdf].
 {follow_up_questions_prompt}
 {injected_prompt}
 """
-    follow_up_questions_prompt_content = """Generate 3 very brief follow-up questions that the user would likely ask next.
+    follow_up_questions_prompt_content = """Generate 3 very brief follow-up questions that the user would likely ask next. 
 Enclose the follow-up questions in double angle brackets. Example:
-<<To whom does the Employee Code of Conduct apply?>>
-<<When does the Employee Code of Conduct apply?>>
-<<What are the ethical principal, values and conduct required by the Employee Code of Conduct?>>
-Do no repeat questions that have already been asked.
+<<To whom does the Employee Code of Conduct apply?>> 
+<<When does the Employee Code of Conduct apply?>> 
+<<What are the ethical principal, values and conduct required by the Employee Code of Conduct?>> 
+Do no repeat questions that have already been asked. 
 Make sure the last question ends with ">>"."""
 
-    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about Human Resource directives, policies, procedures and forms.
-You have access to Azure Cognitive Search index with 100's of documents.
-Generate a search query based on the conversation and the new question.
-Do not include cited source filenames and document names e.g info.txt or doc.pdf in the search query terms.
-Do not include any text inside [] or <<>> in the search query terms.
-Do not include any special characters like '+'.
-If the question is not in English, translate the question to English before generating the search query.
-If you cannot generate a search query, return just the number 0.
+    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching the supplied documents. 
+You have access to Azure Cognitive Search index with 100's of documents. 
+Generate a search query based on the conversation and the new question. 
+Do not include cited source filenames and document names e.g info.txt or doc.pdf in the search query terms. 
+Do not include any text inside [] or <<>> in the search query terms. 
+Do not include any special characters like '+'. 
+If the question is not in English, translate the question to English before generating the search query. 
+If you cannot generate a search query, return just the number 0. 
 """
     query_prompt_few_shots = [
         {"role": USER, "content": "When does the Employee Code of Conduct apply?"},

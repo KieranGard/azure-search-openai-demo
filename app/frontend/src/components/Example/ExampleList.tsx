@@ -12,8 +12,11 @@ const EXAMPLES: ExampleModel[] = [
         text: "How do I change my bank account details?",
         value: "How do I change my bank account details?"
     },
-    { text: "What are Leave Entitlements for full-time employees?", value: "What are Leave Entitlements for full-time employees?" },
-    { text: "Does the Council offer employees learning and development opportunities?", value: "Does the Council offer employees learning and development opportunities?" }
+    { text: "How do I get help with domestic and family violence?", value: "How do I get help with domestic and family violence?" },
+    {
+        text: "Does the Council offer employees learning and development opportunities?",
+        value: "Does the Council offer employees learning and development opportunities?"
+    }
 ];
 
 interface Props {

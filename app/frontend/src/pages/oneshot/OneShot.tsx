@@ -146,10 +146,10 @@ export function Component(): JSX.Element {
         <div className={styles.oneshotContainer}>
             <div className={styles.oneshotTopSection}>
                 <SettingsButton className={styles.settingsButton} onClick={() => setIsConfigPanelOpen(!isConfigPanelOpen)} />
-                <h1 className={styles.oneshotTitle}>Ask your data</h1>
+                <h1 className={styles.oneshotTitle}>Ask your HR data</h1>
                 <div className={styles.oneshotQuestionInput}>
                     <QuestionInput
-                        placeholder="Example: What assistance does the Council provide to employees who are experiencing domestic and family violence?"
+                        placeholder="Example: Are uniforms provided to Council employees?"
                         disabled={isLoading}
                         onSend={question => makeApiRequest(question)}
                     />
