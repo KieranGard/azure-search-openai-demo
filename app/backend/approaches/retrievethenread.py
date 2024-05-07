@@ -17,9 +17,10 @@ class RetrieveThenReadApproach(Approach):
     """
 
     system_chat_template = (
-        "You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. "
+        "You are an intelligent assistant helping Ipswich City Council employees with their Human Resource questions. "
         + "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. "
         + "Answer the following question using only the data provided in the sources below. "
+        + "Let's think step by step about information in retrieved documents to answer user queries. Extract relevant knowledge to user queries from documents step by step and form an answer bottom up from the extracted information from relevant documents."
         + "For tabular information return it as an html table. Do not return markdown format. "
         + "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. "
         + "If you cannot answer using the sources below, say you don't know. Use below example to answer"
@@ -27,15 +28,12 @@ class RetrieveThenReadApproach(Approach):
 
     # shots/sample conversation
     question = """
-'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
+'What are the reasonable grounds for declining a Flexible Working Arrangement request?'
 
 Sources:
-info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
-info2.pdf: Overlake is in-network for the employee plan.
-info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
-info4.pdf: In-network institutions include Overlake, Swedish and others in the region
+Flexible Working Arrangements Procedure.pdf: Reasonable grounds for refusing a request may include but not be limited to a) Capacity to change the working arrangements of other employees to accommodate the flexible working arrangements request; b) Suitability of the work being performed; c) Performance of the employee; d) Costs to Council above normal expectations; e) Loss of productivity and efficiency; and/or f) Negative impacts on service delivery.
 """
-    answer = "In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf]."
+    answer = "Reasonable grounds for refusing a request may include but not be limited to a) Capacity to change the working arrangements of other employees to accommodate the flexible working arrangements request; b) Suitability of the work being performed; c) Performance of the employee; d) Costs to Council above normal expectations; e) Loss of productivity and efficiency; and/or f) Negative impacts on service delivery. [Flexible Working Arrangements Procedure.pdf]"
 
     def __init__(
         self,
@@ -100,7 +98,7 @@ info4.pdf: In-network institutions include Overlake, Swedish and others in the r
                 top=top,
                 query_caption="extractive|highlight-false" if use_semantic_captions else None,
                 vector=query_vector,
-                top_k=50 if query_vector else None,
+                top_k=100 if query_vector else None,
                 vector_fields="embedding" if query_vector else None,
             )
         else:
@@ -109,7 +107,7 @@ info4.pdf: In-network institutions include Overlake, Swedish and others in the r
                 filter=filter,
                 top=top,
                 vector=query_vector,
-                top_k=50 if query_vector else None,
+                top_k=100 if query_vector else None,
                 vector_fields="embedding" if query_vector else None,
             )
         if use_semantic_captions:
