@@ -313,7 +313,7 @@ const Chat = () => {
                         className={styles.chatAnalysisPanel}
                         activeCitation={activeCitation}
                         onActiveTabChanged={x => onToggleTab(x, selectedAnswer)}
-                        citationHeight="810px"
+                        citationHeight="750px"
                         answer={answers[selectedAnswer][1]}
                         activeTab={activeAnalysisPanelTab}
                     />
